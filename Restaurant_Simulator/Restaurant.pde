@@ -28,7 +28,9 @@ class Restaurant {
     fill(this.design);
     rect(0, 0, 900, 800); 
     fill(125, 125, 125);
-    rect (900, 0, 1200, 800);
+    rect (900, 0, 1100, 800);
+    fill(100, 100, 100);
+    rect (1100, 0, 1200, 800);
     for (int i = 0; i < this.columnTables; i++) {
       for (int j = 0; j < this.rowTables; j++) {
         fill(200, 100, 50);
@@ -39,9 +41,12 @@ class Restaurant {
   }
   
   void createWaiters() {
-    for (int i = 0; i < this.numWaiters; i ++) {
-      Waiters.add(new Waiter("Alfredo", int(random(0, 100)), int(random(0,100)), int(random(5, 15)), color(100, 25, 150)));
-      fill(Waiters.get(i).skinColor);
+      for (int i = 0; i < this.numWaiters; i ++) {
+        if (Waiters.size() < this.numWaiters) {
+        Waiters.add(new Waiter("Alfredo", int(random(1, 100)), int(random(1,100)), int(random(5, 8)), color(100, 25, 150)));
+        fill(Waiters.get(i).skinColor);
+        Waiters.get(i).wait = Waiters.get(i).wait/Waiters.get(i).competency;
+      }
     }
   }
   
@@ -66,4 +71,12 @@ class Restaurant {
       }
     }
   }
+  
+void createChefs() {
+  if (Chefs.size() != this.numChefs) {
+    for (int i = 0; i < this.numChefs; i++) {
+      Chefs.add(new Chef("Gustavo", int(random(0, 100)), int(random(1, 5)), color(200, 200, 200), i * (height/res.numChefs)));
+  }
+  }
+}
 }
