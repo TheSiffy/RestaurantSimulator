@@ -13,9 +13,8 @@ class Restaurant {
   float cusInflow;
 
   //Restaurant contructor
-  Restaurant(String n, int d, int rnt, int cnt, int st, int nc, int nw, float ci) {
+  Restaurant(String n, int rnt, int cnt, int st, int nc, int nw, float ci) {
   this.name = n;
-  this.design = d;
   this.rowTables = rnt;
   this.columnTables = cnt;
   this.stinginess = st;
@@ -73,10 +72,10 @@ class Restaurant {
   }
   
 void createChefs() {
-  if (Chefs.size() != this.numChefs) {
     for (int i = 0; i < this.numChefs; i++) {
+      if (Chefs.size() < this.numChefs) {
       Chefs.add(new Chef("Gustavo", int(random(0, 100)), int(random(1, 5)), color(200, 200, 200), i * (height/res.numChefs)));
-  }
+    }
   }
 }
 }

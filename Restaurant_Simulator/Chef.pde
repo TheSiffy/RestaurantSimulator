@@ -8,7 +8,8 @@ class Chef {
   int chefY;
   int chefSpeed;
   int chefIndex;
-  int timeToCook = int(random(2500, 5000));
+  int timeToCook = int(random(1000, 5000));
+  int chefNumber;
   Waiter waiterTarget;
   
   Food foodCooking;
@@ -35,7 +36,6 @@ class Chef {
       this.chefX += this.speed;
     }
     else if (this.timeToCook > 0 && this.isFinished == false) {
-      println("H");
       this.isCooking = true;
       fill(255);
       if (food[this.chefIndex] == "Spaghetti") {
@@ -88,10 +88,12 @@ class Chef {
      }
      square(this.chefX + 85, this.chefY + 5, 30);
    }
-   else if (this.isFinished == false) {
+   else if (this.isFinished == false && this.waiterTarget != null) {
      this.waiterTarget.servingFood = true;
+     this.chefX = 950;
+     this.timeToCook = int(random(1000, 5000));
      this.isCooking = false;
-     this.isFinished = true;
+     
    }
     
   }

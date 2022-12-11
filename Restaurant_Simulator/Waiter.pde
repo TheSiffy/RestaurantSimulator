@@ -112,6 +112,7 @@ class Waiter {
         this.servingFood = false;
         this.target.isEating = true;
         this.chefTarget.waiterTarget = null;
+        this.chefTarget = null;
         Waiters.remove(this);
         Waiters.trimToSize();
       }
@@ -182,10 +183,11 @@ class Waiter {
   }
   
 void findChef() {
-  for (int i = 0; i < res.numChefs; i++) {
+  for (int i = 0; i < Chefs.size(); i++) {
     if (Chefs.get(i).isCooking == false && this.foundChef == false) {
       this.chefTarget = Chefs.get(i);
       this.chefTarget.waiterTarget = this;
+      this.chefTarget.chefNumber = i;
       this.foundChef = true;
       chefWait = 500;
     }
