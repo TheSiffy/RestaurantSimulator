@@ -4,21 +4,97 @@ class Chef {
   int cookingSkill;
   int speed;
   color skinColor;
+  int chefX = 950;
+  int chefY;
+  int chefSpeed;
+  int chefIndex;
+  int timeToCook = int(random(1000, 5000));
+  int chefNumber;
+  Waiter waiterTarget;
+  
+  Food foodCooking;
+  
+  boolean isCooking = false;
+  boolean isFinished = false;
   
   //Constructor//
-  Chef(String n, int c, int s, color sc) {
+  Chef(String n, int c, int s, color sc, int cy) {
     this.name = n;
     this.cookingSkill = c;
     this.speed = s;
     this.skinColor = sc;
+    this.chefY = cy;
   }
   
-  /*void drawChefs() {
-    for (int i = 0; i < res.numChefs; i++) {
-      Chefs.add(new Chef("Gustavo", int(random(0, 100)), int(random(0, 100)), color(200, 200, 200)));
-      fill(Chefs.get(i).skinColor);
-      square(750, (height / res.numChefs) + 90 * i, 90);
+  void drawChef() {
+    fill(this.skinColor);
+    square(this.chefX, this.chefY, 50);
   }
-  }*/
   
+  void cook() {
+    if (this.chefX < 1050 && this.isCooking == false) {
+      this.chefX += this.speed;
+    }
+    else if (this.timeToCook > 0 && this.isFinished == false) {
+      this.isCooking = true;
+      fill(255);
+      if (food[this.chefIndex] == "Spaghetti") {
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(196, 137, 88));
+      }
+      
+      else if (food[this.chefIndex] == "Pizza") {
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(100, 20, 15));
+      }
+          
+      else if (food[this.chefIndex] == "Chicken pot pie") {
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(10, 190, 210));
+      }
+          
+      else if (food[this.chefIndex] == "Tomato soup") {
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(200, 10, 20));
+     }
+     square(this.chefX + 85, this.chefY + 5, 30);
+     this.timeToCook--;
+   }
+   else if (this.chefX > 900 && this.isFinished == false) {
+     this.chefX -= this.speed;
+     if (food[this.chefIndex] == "Spaghetti") {
+       fill(255);
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(196, 137, 88));
+      }
+      
+      else if (food[this.chefIndex] == "Pizza") {
+        fill(255);
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(100, 20, 15));
+      }
+          
+      else if (food[this.chefIndex] == "Chicken pot pie") {
+        fill(255);
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(10, 190, 210));
+      }
+          
+     else if (food[this.chefIndex] == "Tomato soup") {
+       fill(255);
+        circle(this.chefX + 100, this.chefY + 20, 70);
+        fill(color(200, 10, 20));
+     
+     }
+     square(this.chefX + 85, this.chefY + 5, 30);
+   }
+   else if (this.isFinished == false && this.waiterTarget != null) {
+     this.waiterTarget.servingFood = true;
+     this.chefX = 950;
+     this.timeToCook = int(random(1000, 5000));
+     this.isCooking = false;
+     
+   }
+    
+  }
 }
