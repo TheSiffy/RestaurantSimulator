@@ -42,7 +42,7 @@ class Waiter {
               yip = Customers.get(c).timeIn;
               this.target = Customers.get(c);
               this.target.isBeingWaitered = true;
-              this.chance = int(random(0, 10));
+              this.chance = int(random(0, 50));
               this.incorrectFood = int(random(0, food.length));
               this.isWaitering = true;
             }
@@ -101,6 +101,8 @@ class Waiter {
          fill(color(200, 10, 20));
        }
       square(this.posX + 100, this.posY + 50, 30);
+      fill(this.skinColor);
+      square(this.posX + 100, this.posY + 100, 50);
       chefTarget.isFinished = false;
       if (this.target.cusX < this.posX && ((700 / res.rowTables) * this.target.tableTarget2 + 250 <= this.target.cusX)) {
         this.posX -= this.speed;

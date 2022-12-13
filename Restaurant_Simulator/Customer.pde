@@ -44,12 +44,13 @@ class Customer {
   void drawCustomer() {
     this.timeIn += 1;
     if (this.angerTimer < 0) {
-      if ((700 / res.rowTables) * this.tableTarget2 + 250 < this.cusX) {
+      res.cusInflow -= 0.001;
+      if (200 < this.cusX) {
         this.cusX = this.cusX - this.speed;
         fill(color(255,0,0));
         square(this.cusX, this.cusY, 50);
       }
-      else if ((600 / res.columnTables) * this.tableTarget1 + 100 < this.cusY) {
+      else if (0 < this.cusY) {
         this.cusY = this.cusY - this.speed;
         fill(color(255,0,0));
         square(this.cusX, this.cusY, 50);
@@ -85,16 +86,6 @@ class Customer {
       this.eat();
     }
   }
-  /*void checkTables() {
-    for (int i = 0; i < res.columnTables; i++) {
-      for (int j = 0; j < res.rowTables; j++) {
-          if (Tables[this.tableTarget1][this.tableTarget2] == false && this.angerTimer < 0) {
-            println("Meow");
-            Tables[this.tableTarget1][this.tableTarget2] = true;
-        }
-      }
-    }
-  }*/
   
   void customerOrder() {
     if (this.isOrdered == false) {
@@ -125,7 +116,7 @@ class Customer {
     
   }
   else if (this.angerTimer < 0) {
-    
+    res.cusInflow -= 0.001;
   }
   
   }
